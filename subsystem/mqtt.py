@@ -13,35 +13,38 @@ def on_message_mqtt(sensor_name):
     return template
 
 def on_connect(client, userdata, rc, result):
-    client.subscribe('sensor1/#')
-    client.subscribe('sensor2/#')
-    client.subscribe('sensor3/#')
+    client.subscribe('susuhewanidantelur/#')
+    client.subscribe('dagingmerah/#')
+    client.subscribe('dagingputih/#')
+    client.subscribe('sensorkarbohidrat/#')
+    client.subscribe('sayuran/#')
+    client.subscribe('buah/#')
 
-on_message_sensor11 = on_message_mqtt('sensor11')
-on_message_sensor12 = on_message_mqtt('sensor12')
-on_message_sensor13 = on_message_mqtt('sensor13')
+on_message_sensor111 = on_message_mqtt('Sensor Suhu')
+on_message_sensor112 = on_message_mqtt('Sensor Kelembapan')
+on_message_sensor113 = on_message_mqtt('Sensor pH')
 
-on_message_sensor21 = on_message_mqtt('sensor21')
-on_message_sensor22 = on_message_mqtt('sensor22')
-on_message_sensor23 = on_message_mqtt('sensor23')
+on_message_sensor121 = on_message_mqtt('Sensor Oksigen')
+on_message_sensor122 = on_message_mqtt('Sensor Kadar Garam')
+on_message_sensor123 = on_message_mqtt('Sensor Kadar Lemak')
 
-on_message_sensor31 = on_message_mqtt('sensor31')
-on_message_sensor32 = on_message_mqtt('sensor32')
-on_message_sensor33 = on_message_mqtt('sensor33')
+on_message_sensor131 = on_message_mqtt('Sensor Kadar Sodium')
+on_message_sensor132 = on_message_mqtt('Sensor Kadar Protein')
+on_message_sensor133 = on_message_mqtt('Sensor Kadar Gula')
 
 client = mqtt.Client()
 
-client.message_callback_add('sensor1/sensor11', on_message_sensor11)
-client.message_callback_add('sensor1/sensor12', on_message_sensor12)
-client.message_callback_add('sensor1/sensor13', on_message_sensor13)
+client.message_callback_add('susuhewanidantelur/sensorsuhu', on_message_sensor111)
+client.message_callback_add('susuhewanidantelur/sensorkelembapan', on_message_sensor112)
+client.message_callback_add('susuhewanidantelur/sensorph', on_message_sensor113)
 
-client.message_callback_add('sensor2/sensor21', on_message_sensor21)
-client.message_callback_add('sensor2/sensor22', on_message_sensor22)
-client.message_callback_add('sensor2/sensor23', on_message_sensor23)
+client.message_callback_add('dagingmerah/sensoroksigen', on_message_sensor121)
+client.message_callback_add('dagingmerah/sensorkadrgaram', on_message_sensor122)
+client.message_callback_add('dagingmerah/sensorkadarlemak', on_message_sensor123)
 
-client.message_callback_add('sensor3/sensor31', on_message_sensor31)
-client.message_callback_add('sensor3/sensor32', on_message_sensor32)
-client.message_callback_add('sensor3/sensor33', on_message_sensor33)
+client.message_callback_add('dagingputih/sensorkadarsodium', on_message_sensor131)
+client.message_callback_add('dagingputih/sensorkadarprotein', on_message_sensor132)
+client.message_callback_add('dagingputih/sensorkadargula', on_message_sensor133)
 
 client.on_connect = on_connect
 
