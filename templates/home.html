@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  
+<head>
+  <meta charset="utf-8">
+  <title>System Data</title> 
+ 
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  
+</head>
+
+<body>
+	<h1>Water Tank</h1>
+	<table border="1">
+		<tr>
+			<th>Sensor 1 <br> Water Temperature:</th>
+			<th>Sensor 2 <br> Water Usage Rate:</th>
+			<th>Sensor 3 <br> Outside Temperature:</th>
+			<th>Actuator <br> Water Heater</th>
+		</tr>
+		<tr>
+			<td><span id="water-temp"></span> &#176;C</td>
+			<td><span id="water-rate"></span> m^3/s</td>
+			<td><span id="out-temp"></span> &#176;C</td>
+			<td><span id="heater"></span> Watt</td>
+		</tr>
+	</table>
+
+	<h1>Air Conditioner</h1>
+	<table border="1">
+		<tr>
+			<th>Sensor 1<br>Room Temperature:</th>
+			<th>Sensor 2<br>Room Humidity:</th>
+			<th>Sensor 3<br>Room CO2:</th>
+			<th>Actuator<br>Air Conditioner:</th>
+		</tr>
+		<tr>
+			<td><span id="room-temp"></span> &#176;C</td>
+			<td><span id="room-hum"></span>%</td>
+			<td><span id="room-co2"></span> ppm</td>
+			<td><span id="fan"></span> rpm</td>
+		</tr>
+	</table>
+
+	<h1>Automatic Lamp</h1>
+	<table border="1">
+		<tr>
+			<th>Sensor 1 <br> Light Level: </th>
+			<th>Sensor 2 <br> Occupancy:   </th>
+			<th>Sensor 3 <br> Daylight:    </th>
+			<th>Actuator <br> Lamp: </th>
+		</tr>
+		<tr>
+			<td><span id="light-level"></span> lux    </td>
+			<td><span id="occupancy"></span> person(s)</td>
+			<td><span id="daylight"></span> lux       </td>
+			<td><span id="lighting"></span> lux</td>
+		</tr>
+	</table>
+</body>
+
+<script>
+  function updateSensorValue(endpoint, id) {
+    $.ajax({
+      method: "GET",
+      url: endpoint,
+      success: function(data) {
+          var value = document.getElementById(id);
+          value.innerHTML = data.value;
+      },
+      error: function(error_data) {
+          console.log(error_data);
+      }
+    })
+  }
+
+  function updateActuatorState(endpoint, id) {
+    $.ajax({
+      method: "GET",
+      url: endpoint,
+      success: function(data) {
+          var state = document.getElementById(id);
+          state.innerHTML = data.state;
+      },
+      error: function(error_data) {
+          console.log(error_data);
+      }
+    })
+  }
+
+  setInterval(function(){
+    updateSensorValue('/sensor/water-temp', 'water-temp');
+    updateSensorValue('/sensor/water-rate', 'water-rate');
+    updateSensorValue('/sensor/out-temp', 'out-temp');
+    updateActuatorState('/actuator/heater', 'heater');
+
+    updateSensorValue('/sensor/room-temp', 'room-temp');
+    updateSensorValue('/sensor/room-hum', 'room-hum');
+    updateSensorValue('/sensor/room-co2', 'room-co2');
+    updateActuatorState('/actuator/fan', 'fan');
+
+    updateSensorValue('/sensor/light-level', 'light-level');
+    updateSensorValue('/sensor/occupancy', 'occupancy');
+    updateSensorValue('/sensor/daylight', 'daylight');
+    updateActuatorState('/actuator/lighting', 'lighting');
+  }, 2000);
+
+</script>
