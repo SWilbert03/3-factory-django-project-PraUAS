@@ -4,22 +4,42 @@ from . import views
 
 urlpatterns = [
     path('', views.DashboardView.as_view()),
+
+#Smart Farm
+    # Susu Hewani dan Telur
+    path('susuhewanidantelur/sensorsuhu', views.SensorSuhuView.as_view()),
+    path('susuhewanidantelur/sensorkelembapan', views.SensorKelembapanView.as_view()),
+    path('susuhewanidantelur/sensorph', views.SensorpHView.as_view()),
+    # path('actuator/actuator1', views.actuator1view.as_view()),
     
-    # Water Heater System
-    path('sensor/sensor11', views.sensor11view.as_view()),
-    path('sensor/sensor12', views.sensor12view.as_view()),
-    path('sensor/sensor13', views.sensor13view.as_view()),
-    path('actuator/actuator1', views.actuator1view.as_view()),
+    # Daging Merah
+    path('dagingmerah/sensoroksigen', views.SensorOksigenView.as_view()),
+    path('dagingmerah/sensorkadrgaram', views.SensorKadarGaramView.as_view()),
+    path('dagingmerah/sensorkadarlemak', views.SensorKadarLemakView.as_view()),
+    # path('actuator/actuator2', views.actuator2view.as_view()),
     
-    # Fan Control System
-    path('sensor/sensor21', views.sensor21view.as_view()),
-    path('sensor/sensor22', views.sensor22view.as_view()),
-    path('sensor/sensor23', views.sensor23view.as_view()),
-    path('actuator/actuator2', views.actuator2view.as_view()),
+    # Daging Merah 
+    path('dagingputih/sensorkadarsodium', views.SensorKadarSodiumView.as_view()),
+    path('dagingputih/sensorkadarprotein', views.SensorKadarProteinView.as_view()),
+    path('dagingputih/sensorkadargula', views.SensorKadarGulaView.as_view()),
+    # path('actuator/actuator3', views.actuator3view.as_view()),
+
+#Smart Plantation
+    # Sumber Karbohidrat
+    path('sensorkarbohidrat/kelembapantanah', views.SensorKelembapanTanahView.as_view()),
+    path('sensorkarbohidrat/intensicahaya', views.SensorIntensiCahayaView.as_view()),
+    path('sensorkarbohidrat/suhuudara', views.SensorSuhuUdaraView.as_view()),
+    # path('actuator/actuator1', views.actuator1view.as_view()),
     
-    # Lighting Control System 
-    path('sensor/sensor31', views.sensor31view.as_view()),
-    path('sensor/sensor32', views.sensor32view.as_view()),
-    path('sensor/sensor33', views.sensor33view.as_view()),
-    path('actuator/actuator3', views.actuator3view.as_view()),
+    # Sayuran
+    path('sayuran/suhutanah', views.SensorSuhuTanahView.as_view()),
+    path('sayuran/sensorkelembapanudara', views.SensorKelembapanUdaraView.as_view()),
+    path('sayuran/sensorkadarco2', views.SensorKadarCo2View.as_view()),
+    # path('actuator/actuator2', views.actuator2view.as_view()),
+    
+    # Buah-buahan
+    path('buah/sensorkecepatanangin', views.KecepatanAnginView.as_view()),
+    path('buah/sensorcurahhujan', views.CurahHujanView.as_view()),
+    path('buah/sensorkualitasair', views.KualitasAirView.as_view()),
+    # path('actuator/actuator3', views.actuator3view.as_view()),
 ]

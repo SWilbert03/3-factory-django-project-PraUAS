@@ -43,53 +43,106 @@ class DashboardView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'home.html')
 
-# subsistem1
-class sensor11view(SensorTemplateView):
-    sensor_name = "sensor11"
+# Smart Farm ==========================================================================================================================================
+# 	Susu Hewani dan Telur
+class SensorSuhuView(SensorTemplateView):
+    sensor_name = "Sensor Suhu"
     
-class sensor12view(SensorTemplateView):
-    sensor_name = "sensor12"
+class SensorKelembapanView(SensorTemplateView):
+    sensor_name = "Sensor Kelembapan"
 
-class sensor13view(SensorTemplateView):
-    sensor_name = "sensor13"
+class SensorpHView(SensorTemplateView):
+    sensor_name = "Sensor pH"
     
 class actuator1view(ActuatorTemplateView):
     actuator_name = "actuator1"
-    sensor1_name = "sensor11"
-    sensor2_name = "sensor12"
-    sensor3_name = "sensor13"
+    sensor1_name = "Sensor Suhu"
+    sensor2_name = "Sensor Kelembapan"
+    sensor3_name = "Sensor pH"
     training_csv = "heater.csv"
 
-# subsistem2
-class sensor21view(SensorTemplateView):
-    sensor_name = "sensor21"
+# Daging Merah
+class SensorOksigenView(SensorTemplateView):
+    sensor_name = "Sensor Oksigen"
     
-class sensor22view(SensorTemplateView):
-    sensor_name = "sensor22"
+class SensorKadarGaramView(SensorTemplateView):
+    sensor_name = "Sensor Kadar Garam"
     
-class sensor23view(SensorTemplateView):
-    sensor_name = "sensor23"
+class SensorKadarLemakView(SensorTemplateView):
+    sensor_name = "Sensor Kadar Lemak"
     
 class actuator2view(ActuatorTemplateView):
     actuator_name = "actuator2"
-    sensor1_name = "sensor21"
-    sensor2_name = "sensor22"
-    sensor3_name = "sensor23"
+    sensor1_name = "Sensor Oksigen"
+    sensor2_name = "Sensor Kadar Garam"
+    sensor3_name = "Sensor Kadar Lemak"
     training_csv = "fan.csv"
     
-# subsistem3
-class sensor31view(SensorTemplateView):
-    sensor_name = "sensor31"
+# Daging Putih
+class SensorKadarSodiumView(SensorTemplateView):
+    sensor_name = "Sensor Kadar Sodium"
     
-class sensor32view(SensorTemplateView):
-    sensor_name = "sensor32"
+class SensorKadarProteinView(SensorTemplateView):
+    sensor_name = "Sensor Kadar Protein"
     
-class sensor33view(SensorTemplateView):
-    sensor_name = "sensor33"
+class SensorKadarGulaView(SensorTemplateView):
+    sensor_name = "Sensor Kadar Gula"
 
 class actuator3view(ActuatorTemplateView):
     actuator_name = "actuator3"
-    sensor1_name = "sensor31"
-    sensor2_name = "sensor32"
-    sensor3_name = "sensor33"
+    sensor1_name = "Sensor Kadar Sodium"
+    sensor2_name = "Sensor Kadar Protein"
+    sensor3_name = "Sensor Kadar Gula"
+    training_csv = "light.csv"
+
+# Smart Plantation ==========================================================================================================================================
+# 	Sumber Karbohidrat
+class SensorKelembapanTanahView(SensorTemplateView):
+    sensor_name = "Sensor Kelembapan Tanah"
+    
+class SensorIntensiCahayaView(SensorTemplateView):
+    sensor_name = "Sensor Intensi Cahaya"
+
+class SensorSuhuUdaraView(SensorTemplateView):
+    sensor_name = "Sensor Suhu Udara"
+    
+class actuator4view(ActuatorTemplateView):
+    actuator_name = "actuator4"
+    sensor1_name = "Sensor Kelembapan Tanah"
+    sensor2_name = "Sensor Intensi Cahaya"
+    sensor3_name = "Sensor Suhu Udara"
+    training_csv = "heater.csv"
+
+# Sayuran
+class SensorSuhuTanahView(SensorTemplateView):
+    sensor_name = "Sensor Suhu Tanah"
+    
+class SensorKelembapanUdaraView(SensorTemplateView):
+    sensor_name = "Sensor Kelembapan Udara"
+    
+class SensorKadarCo2View(SensorTemplateView):
+    sensor_name = "Sensor Kadar Co2"
+    
+class actuator5view(ActuatorTemplateView):
+    actuator_name = "actuator5"
+    sensor1_name = "Sensor Suhu Tanah"
+    sensor2_name = "Sensor Kelembapan Udara"
+    sensor3_name = "Sensor Kadar Co2"
+    training_csv = "fan.csv"
+    
+# Buah-buahan
+class KecepatanAnginView(SensorTemplateView):
+    sensor_name = "Kecepatan Angin"
+    
+class CurahHujanView(SensorTemplateView):
+    sensor_name = "Curah Hujan"
+    
+class KualitasAirView(SensorTemplateView):
+    sensor_name = "Sensor Kadar Gula"
+
+class actuator6view(ActuatorTemplateView):
+    actuator_name = "actuator6"
+    sensor1_name = "Kecepatan Angin"
+    sensor2_name = "Curah Hujan"
+    sensor3_name = "Kualitas Air"
     training_csv = "light.csv"
