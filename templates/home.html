@@ -15,118 +15,136 @@
 <body>
 	<h1>Smart Farm</h1>
 	<table border="1">
-		<th colspan="3">Susu Hewani dan Telur</th>
+		<th colspan="4">Susu Hewani dan Telur</th>
 		<tr>
 			<th>Sensor Suhu</th>
 			<th>Sensor Kelembapan</th>
 			<th>Sensor pH</th>
+			<th>Pendingin</th>
 		</tr>
 		<tr>
 			<td><span id="sensorsuhu"></span> &#176;C</td>
 			<td><span id="sensorkelembapan"></span> %</td>
 			<td><span id="sensorph"></span> pH</td>
+			<td><span id="actuator1"></span></td>
 		</tr>
 
-		<th colspan="3">Daging Merah</th>
+		<th colspan="4">Daging Merah</th>
 		<tr>
 			<th>Sensor Oksigen</th>
 			<th>Sensor Kadar Garam</th>
 			<th>Sensor Kadar Lemak</th>
+			<th>Umur Daging</th>
 		</tr>
 		<tr>
 			<td><span id="sensoroksigen"></span> %</td>
 			<td><span id="sensorkadrgaram"></span> %</td>
 			<td><span id="sensorkadarlemak"></span> %</td>
+			<td><span id="actuator2"></span></td>
 		</tr>
 		
-		<th colspan="3">Daging Putih</th>
+		<th colspan="4">Daging Putih</th>
 		<tr>
 			<th>Sensor Kadar Sodium</th>
 			<th>Sensor Kadar Protein</th>
 			<th>Sensor Kadar Gula</th>
+			<th>Kualitas Daging</th>
 		</tr>
 		<tr>
 			<td><span id="sensorkadarsodium"></span> mg</td>
 			<td><span id="sensorkadarprotein"></span> %</td>
 			<td><span id="sensorkadargula"></span> %</td>
+			<td><span id="actuator3"></span></td>
 		</tr>
 	</table>
 <!-- ================================================================================================================ -->
 	<h1>Smart Plantation</h1>
 	<table border="1">
-		<th colspan="3">Sumber Karbohidrat</th>
+		<th colspan="4">Sumber Karbohidrat</th>
 		<tr>
 			<th>Sensor Kelembapan Tanah</th>
 			<th>Sensor Intensi Cahaya</th>
 			<th>Sensor Suhu Udara</th>
+			<th>Ventilasi</th>
 		</tr>
 		<tr>
 			<td><span id="kelembapantanah"></span> %</td>
 			<td><span id="intensicahaya"></span> lux</td>
 			<td><span id="suhuudara"></span> &#176;C</td>
+			<td><span id="actuator4"></span></td>
 		</tr>
 
-		<th colspan="3">Sayuran</th>
+		<th colspan="4">Sayuran</th>
 		<tr>
 			<th>Sensor Suhu Tanah</th>
 			<th>Sensor Kelembapan Udara</th>
 			<th>Sensor Kadar Co2</th>
+			<th>Penyiram Air</th>
 		</tr>
 		<tr>
 			<td><span id="suhutanah"></span> &#176;C</td>
 			<td><span id="sensorkelembapanudara"></span> %</td>
 			<td><span id="sensorkadarco2"></span> ppm</td>
+			<td><span id="actuator5"></span></td>
 		</tr>
 		
-		<th colspan="3">Buah-buahan</th>
+		<th colspan="4">Buah-buahan</th>
 		<tr>
 			<th>Kecepatan Angin</th>
 			<th>Curah Hujan</th>
 			<th>Kualitas Air</th>
+			<th>Penutup Otomatis</th>
 		</tr>
 		<tr>
 			<td><span id="sensorkecepatanangin"></span> m/s</td>
 			<td><span id="sensorcurahhujan"></span> mm</td>
 			<td><span id="sensorkualitasair"></span> pH</td>
+			<td><span id="actuator6"></span></td>
 		</tr>
 	</table>
 <!-- ================================================================================================================ -->
 	<h1>Smart Restaurant</h1>
 	<table border="1">
-		<th colspan="3">DeteKsi Musim</th>
+		<th colspan="4">DeteKsi Musim</th>
 		<tr>
 			<th>Sensor Barometer</th>
 			<th>Sensor Ketebalan Awan</th>
 			<th>Sensor Radiasi Surya</th>
+			<th>Penghangat</th>
 		</tr>
 		<tr>
 			<td><span id="barometer"></span> hPa</td>
 			<td><span id="ketebalanawan"></span> okta</td>
 			<td><span id="radiasisurya"></span>W/m^2</td>
+			<td><span id="actuator7"></span></td>
 		</tr>
 
-		<th colspan="3">Deteksi Hasil Penjualan Berfluktuasi</th>
+		<th colspan="4">Deteksi Hasil Penjualan Berfluktuasi</th>
 		<tr>
 			<th>Sensor Cancel Order</th>
 			<th>Sensor Penilaian</th>
 			<th>Sensor Jumlah Pesanan</th>
+			<th>Tingkat Keuntungan</th>
 		</tr>
 		<tr>
 			<td><span id="cancelorder"></span> order</td>
 			<td><span id="penilaian"></span> ⭐</td>
 			<td><span id="jumlahpesanan"></span> menu</td>
+			<td><span id="actuator8"></span></td>
 		</tr>
 		
-		<th colspan="3">Deteksi Jumlah Pengunjung Restoran</th>
+		<th colspan="4">Deteksi Jumlah Pengunjung Restoran</th>
 		<tr>
 			<th>Sensor Pendeteksi Gerakan</th>
 			<th>Sensor Meja Kosong</th>
 			<th>Sensor Kebisingan</th>
+			<th>Tingkat Keramaian</th>
 		</tr>
 		<tr>
 			<td><span id="pendeteksigerakan"></span> orang</td>
 			<td><span id="mejakosong"></span> meja</td>
 			<td><span id="kebisingan"></span> dB</td>
+			<td><span id="actuator9"></span></td>
 		</tr>
 	</table>
 </body>
@@ -165,49 +183,49 @@
     updateSensorValue('/susuhewanidantelur/sensorsuhu', 'sensorsuhu');
     updateSensorValue('/susuhewanidantelur/sensorkelembapan', 'sensorkelembapan');
     updateSensorValue('/susuhewanidantelur/sensorph', 'sensorph');
-    // updateActuatorState('/actuator/heater', 'heater');
+    updateActuatorState('/actuator/actuator1', 'actuator1');
 
     updateSensorValue('/dagingmerah/sensoroksigen', 'sensoroksigen');
     updateSensorValue('/dagingmerah/sensorkadrgaram', 'sensorkadrgaram');
     updateSensorValue('/dagingmerah/sensorkadarlemak', 'sensorkadarlemak');
-    // updateActuatorState('/actuator/fan', 'fan');
+    updateActuatorState('/actuator/actuator2', 'actuator2');
 
     updateSensorValue('/dagingputih/sensorkadarsodium', 'sensorkadarsodium');
     updateSensorValue('/dagingputih/sensorkadarprotein', 'sensorkadarprotein');
     updateSensorValue('/dagingputih/sensorkadargula', 'sensorkadargula');
-    // updateActuatorState('/actuator/lighting', 'lighting');
+    updateActuatorState('/actuator/actuator3', 'actuator3');
 
 // Smart Plantation
 	updateSensorValue('/sensorkarbohidrat/kelembapantanah', 'kelembapantanah');
     updateSensorValue('/sensorkarbohidrat/intensicahaya', 'intensicahaya');
     updateSensorValue('/sensorkarbohidrat/suhuudara', 'suhuudara');
-    // updateActuatorState('/actuator/heater', 'heater');
+    updateActuatorState('/actuator/actuator4', 'actuator4');
 
     updateSensorValue('/sayuran/suhutanah', 'suhutanah');
     updateSensorValue('/sayuran/sensorkelembapanudara', 'sensorkelembapanudara');
     updateSensorValue('/sayuran/sensorkadarco2', 'sensorkadarco2');
-    // updateActuatorState('/actuator/fan', 'fan');
+    updateActuatorState('/actuator/actuator5', 'actuator5');
 
     updateSensorValue('/buah/sensorkecepatanangin', 'sensorkecepatanangin');
     updateSensorValue('/buah/sensorcurahhujan', 'sensorcurahhujan');
     updateSensorValue('/buah/sensorkualitasair', 'sensorkualitasair');
-    // updateActuatorState('/actuator/lighting', 'lighting');
+    updateActuatorState('/actuator/actuator6', 'actuator6');
 
 // Smart Restaurant
 	updateSensorValue('/musim/barometer', 'barometer');
     updateSensorValue('/musim/ketebalanawan', 'ketebalanawan');
     updateSensorValue('/musim/radiasisurya', 'radiasisurya');
-    // updateActuatorState('/actuator/heater', 'heater');
+    updateActuatorState('/actuator/actuator7', 'actuator7');
 
     updateSensorValue('/hasilpenjualanberfluktuasi/cancelorder', 'cancelorder');
     updateSensorValue('/hasilpenjualanberfluktuasi/penilaian', 'penilaian');
     updateSensorValue('/hasilpenjualanberfluktuasi/jumlahpesanan', 'jumlahpesanan');
-    // updateActuatorState('/actuator/fan', 'fan');
+    updateActuatorState('/actuator/actuator8', 'actuator8');
 
     updateSensorValue('/jumlahpengunjungrestoran/pendeteksigerakan', 'pendeteksigerakan');
     updateSensorValue('/jumlahpengunjungrestoran/mejakosong', 'mejakosong');
     updateSensorValue('/jumlahpengunjungrestoran/kebisingan', 'kebisingan');
-    // updateActuatorState('/actuator/lighting', 'lighting');
+    updateActuatorState('/actuator/actuator9', 'actuator9');
   }, 2000);
 
 </script>

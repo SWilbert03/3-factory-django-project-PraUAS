@@ -59,7 +59,7 @@ class actuator1view(ActuatorTemplateView):
     sensor1_name = "Sensor Suhu"
     sensor2_name = "Sensor Kelembapan"
     sensor3_name = "Sensor pH"
-    training_csv = "heater.csv"
+    training_csv = "actuator1.csv"
 
 # Daging Merah
 class SensorOksigenView(SensorTemplateView):
@@ -76,7 +76,7 @@ class actuator2view(ActuatorTemplateView):
     sensor1_name = "Sensor Oksigen"
     sensor2_name = "Sensor Kadar Garam"
     sensor3_name = "Sensor Kadar Lemak"
-    training_csv = "fan.csv"
+    training_csv = "actuator2.csv"
     
 # Daging Putih
 class SensorKadarSodiumView(SensorTemplateView):
@@ -93,7 +93,7 @@ class actuator3view(ActuatorTemplateView):
     sensor1_name = "Sensor Kadar Sodium"
     sensor2_name = "Sensor Kadar Protein"
     sensor3_name = "Sensor Kadar Gula"
-    training_csv = "light.csv"
+    training_csv = "actuator3.csv"
 
 # Smart Plantation ==========================================================================================================================================
 # 	Sumber Karbohidrat
@@ -111,7 +111,7 @@ class actuator4view(ActuatorTemplateView):
     sensor1_name = "Sensor Kelembapan Tanah"
     sensor2_name = "Sensor Intensi Cahaya"
     sensor3_name = "Sensor Suhu Udara"
-    training_csv = "heater.csv"
+    training_csv = "actuator4.csv"
 
 # Sayuran
 class SensorSuhuTanahView(SensorTemplateView):
@@ -128,7 +128,7 @@ class actuator5view(ActuatorTemplateView):
     sensor1_name = "Sensor Suhu Tanah"
     sensor2_name = "Sensor Kelembapan Udara"
     sensor3_name = "Sensor Kadar Co2"
-    training_csv = "fan.csv"
+    training_csv = "actuator5.csv"
     
 # Buah-buahan
 class KecepatanAnginView(SensorTemplateView):
@@ -145,7 +145,7 @@ class actuator6view(ActuatorTemplateView):
     sensor1_name = "Kecepatan Angin"
     sensor2_name = "Curah Hujan"
     sensor3_name = "Kualitas Air"
-    training_csv = "light.csv"
+    training_csv = "actuator6.csv"
 
 # Smart Restaurant ==========================================================================================================================================
 # DeteKsi Musim
@@ -163,7 +163,7 @@ class actuator7view(ActuatorTemplateView):
     sensor1_name = "Sensor Barometer"
     sensor2_name = "Sensor Ketebalan Awan"
     sensor3_name = "Sensor Radiasi Surya"
-    training_csv = "heater.csv"
+    training_csv = "actuator7.csv"
 
 # Deteksi Hasil Penjualan Berfluktuasi
 class SensorCancelOrderView(SensorTemplateView):
@@ -180,7 +180,7 @@ class actuator8view(ActuatorTemplateView):
     sensor1_name = "Sensor Cancel Order"
     sensor2_name = "Sensor Penilaian"
     sensor3_name = "Sensor Jumlah Pesanan"
-    training_csv = "fan.csv"
+    training_csv = "actuator8.csv"
     
 # Deteksi Jumlah Pengunjung Restoran
 class SensorPendeteksiGerakanView(SensorTemplateView):
@@ -197,4 +197,4 @@ class actuator9view(ActuatorTemplateView):
     sensor1_name = "Sensor Pendeteksi Gerakan"
     sensor2_name = "Sensor Meja Kosong"
     sensor3_name = "Sensor Kebisingan"
-    training_csv = "light.csv"
+    training_csv = "actuator9.csv"
