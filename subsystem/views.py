@@ -64,7 +64,7 @@ class DashboardView(View):
         return render(request, 'home.html')
 
 # Smart Farm ==========================================================================================================================================
-# 	Susu Hewani dan Telur
+# Susu Hewani dan Telur
 class SensorSuhuView(SensorTemplateView):
     sensor_name = "Sensor Suhu"
     
