@@ -51,7 +51,7 @@
 			<td><span id="sensorkadargula"></span> %</td>
 		</tr>
 	</table>
-
+<!-- ================================================================================================================ -->
 	<h1>Smart Plantation</h1>
 	<table border="1">
 		<th colspan="3">Sumber Karbohidrat</th>
@@ -88,6 +88,45 @@
 			<td><span id="sensorkecepatanangin"></span> m/s</td>
 			<td><span id="sensorcurahhujan"></span> mm</td>
 			<td><span id="sensorkualitasair"></span> pH</td>
+		</tr>
+	</table>
+<!-- ================================================================================================================ -->
+	<h1>Smart Restaurant</h1>
+	<table border="1">
+		<th colspan="3">DeteKsi Musim</th>
+		<tr>
+			<th>Sensor Barometer</th>
+			<th>Sensor Ketebalan Awan</th>
+			<th>Sensor Radiasi Surya</th>
+		</tr>
+		<tr>
+			<td><span id="barometer"></span> hPa</td>
+			<td><span id="ketebalanawan"></span> okta</td>
+			<td><span id="radiasisurya"></span>W/m^2</td>
+		</tr>
+
+		<th colspan="3">Deteksi Hasil Penjualan Berfluktuasi</th>
+		<tr>
+			<th>Sensor Cancel Order</th>
+			<th>Sensor Penilaian</th>
+			<th>Sensor Jumlah Pesanan</th>
+		</tr>
+		<tr>
+			<td><span id="cancelorder"></span> order</td>
+			<td><span id="penilaian"></span> ⭐</td>
+			<td><span id="jumlahpesanan"></span> menu</td>
+		</tr>
+		
+		<th colspan="3">Deteksi Jumlah Pengunjung Restoran</th>
+		<tr>
+			<th>Sensor Pendeteksi Gerakan</th>
+			<th>Sensor Meja Kosong</th>
+			<th>Sensor Kebisingan</th>
+		</tr>
+		<tr>
+			<td><span id="pendeteksigerakan"></span> orang</td>
+			<td><span id="mejakosong"></span> meja</td>
+			<td><span id="kebisingan"></span> dB</td>
 		</tr>
 	</table>
 </body>
@@ -152,6 +191,22 @@
     updateSensorValue('/buah/sensorkecepatanangin', 'sensorkecepatanangin');
     updateSensorValue('/buah/sensorcurahhujan', 'sensorcurahhujan');
     updateSensorValue('/buah/sensorkualitasair', 'sensorkualitasair');
+    // updateActuatorState('/actuator/lighting', 'lighting');
+
+// Smart Restaurant
+	updateSensorValue('/musim/barometer', 'barometer');
+    updateSensorValue('/musim/ketebalanawan', 'ketebalanawan');
+    updateSensorValue('/musim/radiasisurya', 'radiasisurya');
+    // updateActuatorState('/actuator/heater', 'heater');
+
+    updateSensorValue('/hasilpenjualanberfluktuasi/cancelorder', 'cancelorder');
+    updateSensorValue('/hasilpenjualanberfluktuasi/penilaian', 'penilaian');
+    updateSensorValue('/hasilpenjualanberfluktuasi/jumlahpesanan', 'jumlahpesanan');
+    // updateActuatorState('/actuator/fan', 'fan');
+
+    updateSensorValue('/jumlahpengunjungrestoran/pendeteksigerakan', 'pendeteksigerakan');
+    updateSensorValue('/jumlahpengunjungrestoran/mejakosong', 'mejakosong');
+    updateSensorValue('/jumlahpengunjungrestoran/kebisingan', 'kebisingan');
     // updateActuatorState('/actuator/lighting', 'lighting');
   }, 2000);
 

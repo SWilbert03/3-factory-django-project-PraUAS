@@ -42,4 +42,23 @@ urlpatterns = [
     path('buah/sensorcurahhujan', views.CurahHujanView.as_view()),
     path('buah/sensorkualitasair', views.KualitasAirView.as_view()),
     # path('actuator/actuator3', views.actuator3view.as_view()),
+
+#Smart Restaurant
+    # DeteKsi Musim
+    path('musim/barometer', views.SensorBarometerView.as_view()),
+    path('musim/ketebalanawan', views.SensorKetebalanAwanView.as_view()),
+    path('musim/radiasisurya', views.SensorRadiasiSuryaView.as_view()),
+    # path('actuator/actuator1', views.actuator1view.as_view()),
+    
+    # Deteksi Hasil Penjualan Berfluktuasi
+    path('hasilpenjualanberfluktuasi/cancelorder', views.SensorCancelOrderView.as_view()),
+    path('hasilpenjualanberfluktuasi/penilaian', views.SensorPenilaianView.as_view()),
+    path('hasilpenjualanberfluktuasi/jumlahpesanan', views.SensorJumlahPesananView.as_view()),
+    # path('actuator/actuator2', views.actuator2view.as_view()),
+    
+    # Deteksi Jumlah Pengunjung Restoran
+    path('jumlahpengunjungrestoran/pendeteksigerakan', views.SensorPendeteksiGerakanView.as_view()),
+    path('jumlahpengunjungrestoran/mejakosong', views.SensorMejaKosongView.as_view()),
+    path('jumlahpengunjungrestoran/kebisingan', views.SensorKebisinganView.as_view()),
+    # path('actuator/actuator3', views.actuator3view.as_view()),
 ]

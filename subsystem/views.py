@@ -138,11 +138,63 @@ class CurahHujanView(SensorTemplateView):
     sensor_name = "Curah Hujan"
     
 class KualitasAirView(SensorTemplateView):
-    sensor_name = "Sensor Kadar Gula"
+    sensor_name = "Kualitas Air"
 
 class actuator6view(ActuatorTemplateView):
     actuator_name = "actuator6"
     sensor1_name = "Kecepatan Angin"
     sensor2_name = "Curah Hujan"
     sensor3_name = "Kualitas Air"
+    training_csv = "light.csv"
+
+# Smart Restaurant ==========================================================================================================================================
+# DeteKsi Musim
+class SensorBarometerView(SensorTemplateView):
+    sensor_name = "Sensor Barometer"
+    
+class SensorKetebalanAwanView(SensorTemplateView):
+    sensor_name = "Sensor Ketebalan Awan"
+
+class SensorRadiasiSuryaView(SensorTemplateView):
+    sensor_name = "Sensor Radiasi Surya"
+    
+class actuator7view(ActuatorTemplateView):
+    actuator_name = "actuator7"
+    sensor1_name = "Sensor Barometer"
+    sensor2_name = "Sensor Ketebalan Awan"
+    sensor3_name = "Sensor Radiasi Surya"
+    training_csv = "heater.csv"
+
+# Deteksi Hasil Penjualan Berfluktuasi
+class SensorCancelOrderView(SensorTemplateView):
+    sensor_name = "Sensor Cancel Order"
+    
+class SensorPenilaianView(SensorTemplateView):
+    sensor_name = "Sensor Penilaian"
+    
+class SensorJumlahPesananView(SensorTemplateView):
+    sensor_name = "Sensor Jumlah Pesanan"
+    
+class actuator8view(ActuatorTemplateView):
+    actuator_name = "actuator8"
+    sensor1_name = "Sensor Cancel Order"
+    sensor2_name = "Sensor Penilaian"
+    sensor3_name = "Sensor Jumlah Pesanan"
+    training_csv = "fan.csv"
+    
+# Deteksi Jumlah Pengunjung Restoran
+class SensorPendeteksiGerakanView(SensorTemplateView):
+    sensor_name = "Sensor Pendeteksi Gerakan"
+    
+class SensorMejaKosongView(SensorTemplateView):
+    sensor_name = "Sensor Meja Kosong"
+    
+class SensorKebisinganView(SensorTemplateView):
+    sensor_name = "Sensor Kebisingan"
+
+class actuator9view(ActuatorTemplateView):
+    actuator_name = "actuator9"
+    sensor1_name = "Sensor Pendeteksi Gerakan"
+    sensor2_name = "Sensor Meja Kosong"
+    sensor3_name = "Sensor Kebisingan"
     training_csv = "light.csv"
