@@ -60,5 +60,10 @@ urlpatterns = [
     path('jumlahpengunjungrestoran/pendeteksigerakan', views.SensorPendeteksiGerakanView.as_view()),
     path('jumlahpengunjungrestoran/mejakosong', views.SensorMejaKosongView.as_view()),
     path('jumlahpengunjungrestoran/kebisingan', views.SensorKebisinganView.as_view()),
-    path('actuator/actuator9', views.actuator9view.as_view())
+    path('actuator/actuator9', views.actuator9view.as_view()),
+
+    path('actuator/actuatorsubsystem1', views.actuatorsubsystem1view.as_view()),
+    path('actuator/actuatorsubsystem2', views.actuatorsubsystem2view.as_view()),
+    path('actuator/actuatorsubsystem3', views.actuatorsubsystem3view.as_view()),
+    path('actuator/actuatorsystem', views.actuatorsystemview.as_view())
 ]

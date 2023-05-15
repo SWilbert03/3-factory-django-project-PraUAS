@@ -39,6 +39,26 @@ class ActuatorTemplateView(APIView):
         }
         return Response(data)
 
+class ActuatorTemplateSystemView(APIView):
+    actuator_name = ""
+    actuatorsubsystem1  = ""
+    actuatorsubsystem2  = ""
+    actuatorsubsystem3  = ""
+    training_csv  = ""
+    def get(self, request, format=None):
+        actuator = Actuator.objects.get(name=self.actuator_name)
+        actuatorsubsystem1 = Actuator.objects.get(name=self.actuatorsubsystem1)
+        actuatorsubsystem2 = Actuator.objects.get(name=self.actuatorsubsystem2)
+        actuatorsubsystem3 = Actuator.objects.get(name=self.actuatorsubsystem3)
+        model = mlmodel.BaseLinearRegression(settings.ML_ROOT + self.training_csv)
+        prediction = model.predict([float(actuatorsubsystem1.state), float(actuatorsubsystem2.state), float(actuatorsubsystem3.state)])
+        actuator.state = int(prediction)
+        actuator.save()
+        data = {
+            "state": actuator.state
+        }
+        return Response(data)
+
 class DashboardView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'home.html')
@@ -198,3 +218,31 @@ class actuator9view(ActuatorTemplateView):
     sensor2_name = "Sensor Meja Kosong"
     sensor3_name = "Sensor Kebisingan"
     training_csv = "actuator9.csv"
+
+class actuatorsubsystem1view(ActuatorTemplateSystemView):
+    actuator_name = "actuatorsubsystem1"
+    actuatorsubsystem1 = "actuator1"
+    actuatorsubsystem2 = "actuator2"
+    actuatorsubsystem3 = "actuator3"
+    training_csv = "subsystem1.csv"
+
+class actuatorsubsystem2view(ActuatorTemplateSystemView):
+    actuator_name = "actuatorsubsystem2"
+    actuatorsubsystem1 = "actuator4"
+    actuatorsubsystem2 = "actuator5"
+    actuatorsubsystem3 = "actuator6"
+    training_csv = "subsystem2.csv"
+
+class actuatorsubsystem3view(ActuatorTemplateSystemView):
+    actuator_name = "actuatorsubsystem3"
+    actuatorsubsystem1 = "actuator7"
+    actuatorsubsystem2 = "actuator8"
+    actuatorsubsystem3 = "actuator9"
+    training_csv = "subsystem3.csv"
+
+class actuatorsystemview(ActuatorTemplateSystemView):
+    actuator_name = "actuatorsystem"
+    actuatorsubsystem1 = "actuatorsubsystem1"
+    actuatorsubsystem2 = "actuatorsubsystem2"
+    actuatorsubsystem3 = "actuatorsubsystem3"
+    training_csv = "actuator.csv"
