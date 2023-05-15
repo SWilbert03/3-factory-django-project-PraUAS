@@ -62,7 +62,7 @@ class ActuatorTemplateSystemView(APIView):
 class DashboardView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'home.html')
-
+    
 # Smart Farm ==========================================================================================================================================
 # Susu Hewani dan Telur
 class SensorSuhuView(SensorTemplateView):

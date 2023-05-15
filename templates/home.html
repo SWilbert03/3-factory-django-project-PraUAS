@@ -5,183 +5,251 @@
 <head>
   <meta charset="utf-8">
   <title>System Data</title> 
- 
+  <style>
+    /* CSS untuk layout */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+    nav {
+        background-color: #333;
+        padding: 10px;
+    }
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    nav ul li a {
+        color: #FFF;
+        text-decoration: none;
+        padding: 5px;
+    }
+
+	.col{
+		flex-basis: calc(95% - 10px);
+		padding: 10px;
+	}
+
+    main {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* tiga kolom dengan lebar sama */
+      grid-template-rows: auto; /* ukuran baris otomatis menyesuaikan konten */
+      gap: 10px; /* jarak antar grid item */
+      padding: 10px;
+    }
+    .col1 {
+      background-color: #eee;
+      padding: 10px;
+      border: 1px solid #333;
+      text-align: center;
+    }
+	
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+  </style>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 
-  
 </head>
 
 <body>
-	<canvas id="actuatorsystemChart"></canvas>
-	<table border="1">
-		<td width="25%"><canvas id="actuatorsubsystem1Chart"></canvas></td>
-		<td width="25%"><canvas id="actuatorsubsystem2Chart"></canvas></td>
-		<td width="25%"><canvas id="actuatorsubsystem3Chart"></canvas></td>
-	</table>
-	<h1>Smart Farm</h1>
-	<table border="1">
-		<th colspan="4">Susu Hewani dan Telur</th>
-		<tr>
-			<th>Sensor Suhu</th>
-			<th>Sensor Kelembapan</th>
-			<th>Sensor pH</th>
-			<th>Pendingin</th>
-		</tr>
-		<tr>
-			<td><span id="sensorsuhu"></span> &#176;C</td>
-			<td><span id="sensorkelembapan"></span> %</td>
-			<td><span id="sensorph"></span> pH</td>
-			<td><span id="actuator1"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuatorChart"></canvas></td>
-		</tr>
-
-		<th colspan="4">Daging Merah</th>
-		<tr>
-			<th>Sensor Oksigen</th>
-			<th>Sensor Kadar Garam</th>
-			<th>Sensor Kadar Lemak</th>
-			<th>Umur Daging</th>
-		</tr>
-		<tr>
-			<td><span id="sensoroksigen"></span> %</td>
-			<td><span id="sensorkadrgaram"></span> %</td>
-			<td><span id="sensorkadarlemak"></span> %</td>
-			<td><span id="actuator2"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator2Chart"></canvas></td>
-		</tr>
+	<nav>
+		<ul>
+			<li><a>DASHBOARD</a></li>
+		</ul>
+	</nav>
+	<div class="col">
+		<canvas id="actuatorsystemChart"></canvas>
+	</div>
+	
+	<main>
+		<div class="col1">
+			<h1>Smart Farm</h1>
+			<table border="1">
+				<tr>	
+					<td colspan="4"><canvas id="actuatorsubsystem1Chart"></canvas></td>
+				</tr>
+				<th colspan="4">Susu Hewani dan Telur</th>
+				<tr>
+					<th>Sensor Suhu</th>
+					<th>Sensor Kelembapan</th>
+					<th>Sensor pH</th>
+					<th>Pendingin</th>
+				</tr>
+				<tr>
+					<td><span id="sensorsuhu"></span> &#176;C</td>
+					<td><span id="sensorkelembapan"></span> %</td>
+					<td><span id="sensorph"></span> pH</td>
+					<td><span id="actuator1"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuatorChart"></canvas></td>
+				</tr>
 		
-		<th colspan="4">Daging Putih</th>
-		<tr>
-			<th>Sensor Kadar Sodium</th>
-			<th>Sensor Kadar Protein</th>
-			<th>Sensor Kadar Gula</th>
-			<th>Kualitas Daging</th>
-		</tr>
-		<tr>
-			<td><span id="sensorkadarsodium"></span> mg</td>
-			<td><span id="sensorkadarprotein"></span> %</td>
-			<td><span id="sensorkadargula"></span> %</td>
-			<td><span id="actuator3"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator3Chart"></canvas></td>
-		</tr>
-	</table>
-<!-- ================================================================================================================ -->
-	<h1>Smart Plantation</h1>
-	<table border="1">
-		<th colspan="4">Sumber Karbohidrat</th>
-		<tr>
-			<th>Sensor Kelembapan Tanah</th>
-			<th>Sensor Intensi Cahaya</th>
-			<th>Sensor Suhu Udara</th>
-			<th>Ventilasi</th>
-		</tr>
-		<tr>
-			<td><span id="kelembapantanah"></span> %</td>
-			<td><span id="intensicahaya"></span> lux</td>
-			<td><span id="suhuudara"></span> &#176;C</td>
-			<td><span id="actuator4"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator4Chart"></canvas></td>
-		</tr>
-
-		<th colspan="4">Sayuran</th>
-		<tr>
-			<th>Sensor Suhu Tanah</th>
-			<th>Sensor Kelembapan Udara</th>
-			<th>Sensor Kadar Co2</th>
-			<th>Penyiram Air</th>
-		</tr>
-		<tr>
-			<td><span id="suhutanah"></span> &#176;C</td>
-			<td><span id="sensorkelembapanudara"></span> %</td>
-			<td><span id="sensorkadarco2"></span> ppm</td>
-			<td><span id="actuator5"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator5Chart"></canvas></td>
-		</tr>
+				<th colspan="4">Daging Merah</th>
+				<tr>
+					<th>Sensor Oksigen</th>
+					<th>Sensor Kadar Garam</th>
+					<th>Sensor Kadar Lemak</th>
+					<th>Umur Daging</th>
+				</tr>
+				<tr>
+					<td><span id="sensoroksigen"></span> %</td>
+					<td><span id="sensorkadrgaram"></span> %</td>
+					<td><span id="sensorkadarlemak"></span> %</td>
+					<td><span id="actuator2"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator2Chart"></canvas></td>
+				</tr>
+				
+				<th colspan="4">Daging Putih</th>
+				<tr>
+					<th>Sensor Kadar Sodium</th>
+					<th>Sensor Kadar Protein</th>
+					<th>Sensor Kadar Gula</th>
+					<th>Kualitas Daging</th>
+				</tr>
+				<tr>
+					<td><span id="sensorkadarsodium"></span> mg</td>
+					<td><span id="sensorkadarprotein"></span> %</td>
+					<td><span id="sensorkadargula"></span> %</td>
+					<td><span id="actuator3"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator3Chart"></canvas></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col1">
+			<h1>Smart Plantation</h1>
+			<table border="1">
+				<tr>
+					<td colspan="4"><canvas id="actuatorsubsystem2Chart"></canvas></td>
+				</tr>	
+				<th colspan="4">Sumber Karbohidrat</th>
+				<tr>
+					<th>Sensor Kelembapan Tanah</th>
+					<th>Sensor Intensi Cahaya</th>
+					<th>Sensor Suhu Udara</th>
+					<th>Ventilasi</th>
+				</tr>
+				<tr>
+					<td><span id="kelembapantanah"></span> %</td>
+					<td><span id="intensicahaya"></span> lux</td>
+					<td><span id="suhuudara"></span> &#176;C</td>
+					<td><span id="actuator4"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator4Chart"></canvas></td>
+				</tr>
 		
-		<th colspan="4">Buah-buahan</th>
-		<tr>
-			<th>Kecepatan Angin</th>
-			<th>Curah Hujan</th>
-			<th>Kualitas Air</th>
-			<th>Penutup Otomatis</th>
-		</tr>
-		<tr>
-			<td><span id="sensorkecepatanangin"></span> m/s</td>
-			<td><span id="sensorcurahhujan"></span> mm</td>
-			<td><span id="sensorkualitasair"></span> pH</td>
-			<td><span id="actuator6"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator6Chart"></canvas></td>
-		</tr>
-	</table>
-<!-- ================================================================================================================ -->
-	<h1>Smart Restaurant</h1>
-	<table border="1">
-		<th colspan="4">DeteKsi Musim</th>
-		<tr>
-			<th>Sensor Barometer</th>
-			<th>Sensor Ketebalan Awan</th>
-			<th>Sensor Radiasi Surya</th>
-			<th>Penghangat</th>
-		</tr>
-		<tr>
-			<td><span id="barometer"></span> hPa</td>
-			<td><span id="ketebalanawan"></span> okta</td>
-			<td><span id="radiasisurya"></span>W/m^2</td>
-			<td><span id="actuator7"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator7Chart"></canvas></td>
-		</tr>
-
-		<th colspan="4">Deteksi Hasil Penjualan Berfluktuasi</th>
-		<tr>
-			<th>Sensor Cancel Order</th>
-			<th>Sensor Penilaian</th>
-			<th>Sensor Jumlah Pesanan</th>
-			<th>Tingkat Keuntungan</th>
-		</tr>
-		<tr>
-			<td><span id="cancelorder"></span> order</td>
-			<td><span id="penilaian"></span>⭐</td>
-			<td><span id="jumlahpesanan"></span> menu</td>
-			<td><span id="actuator8"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator8Chart"></canvas></td>
-		</tr>
+				<th colspan="4">Sayuran</th>
+				<tr>
+					<th>Sensor Suhu Tanah</th>
+					<th>Sensor Kelembapan Udara</th>
+					<th>Sensor Kadar Co2</th>
+					<th>Penyiram Air</th>
+				</tr>
+				<tr>
+					<td><span id="suhutanah"></span> &#176;C</td>
+					<td><span id="sensorkelembapanudara"></span> %</td>
+					<td><span id="sensorkadarco2"></span> ppm</td>
+					<td><span id="actuator5"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator5Chart"></canvas></td>
+				</tr>
+				
+				<th colspan="4">Buah-buahan</th>
+				<tr>
+					<th>Kecepatan Angin</th>
+					<th>Curah Hujan</th>
+					<th>Kualitas Air</th>
+					<th>Penutup Otomatis</th>
+				</tr>
+				<tr>
+					<td><span id="sensorkecepatanangin"></span> m/s</td>
+					<td><span id="sensorcurahhujan"></span> mm</td>
+					<td><span id="sensorkualitasair"></span> pH</td>
+					<td><span id="actuator6"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator6Chart"></canvas></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col1">
+			<h1>Smart Restaurant</h1>
+			<table border="1">
+				<tr>
+					<td colspan="4"><canvas id="actuatorsubsystem3Chart"></canvas></td>
+				</tr>
+				<th colspan="4">DeteKsi Musim</th>
+				<tr>
+					<th>Sensor Barometer</th>
+					<th>Sensor Ketebalan Awan</th>
+					<th>Sensor Radiasi Surya</th>
+					<th>Penghangat</th>
+				</tr>
+				<tr>
+					<td><span id="barometer"></span> hPa</td>
+					<td><span id="ketebalanawan"></span> okta</td>
+					<td><span id="radiasisurya"></span>W/m^2</td>
+					<td><span id="actuator7"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator7Chart"></canvas></td>
+				</tr>
 		
-		<th colspan="4">Deteksi Jumlah Pengunjung Restoran</th>
-		<tr>
-			<th>Sensor Pendeteksi Gerakan</th>
-			<th>Sensor Meja Kosong</th>
-			<th>Sensor Kebisingan</th>
-			<th>Tingkat Keramaian</th>
-		</tr>
-		<tr>
-			<td><span id="pendeteksigerakan"></span> orang</td>
-			<td><span id="mejakosong"></span> meja</td>
-			<td><span id="kebisingan"></span> dB</td>
-			<td><span id="actuator9"></span></td>
-		</tr>
-		<tr>
-			<td colspan="4"><canvas id="actuator9Chart"></canvas></td>
-		</tr>
-	</table>
+				<th colspan="4">Deteksi Hasil Penjualan Berfluktuasi</th>
+				<tr>
+					<th>Sensor Cancel Order</th>
+					<th>Sensor Penilaian</th>
+					<th>Sensor Jumlah Pesanan</th>
+					<th>Tingkat Keuntungan</th>
+				</tr>
+				<tr>
+					<td><span id="cancelorder"></span> order</td>
+					<td><span id="penilaian"></span>⭐</td>
+					<td><span id="jumlahpesanan"></span> menu</td>
+					<td><span id="actuator8"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator8Chart"></canvas></td>
+				</tr>
+				
+				<th colspan="4">Deteksi Jumlah Pengunjung Restoran</th>
+				<tr>
+					<th>Sensor Pendeteksi Gerakan</th>
+					<th>Sensor Meja Kosong</th>
+					<th>Sensor Kebisingan</th>
+					<th>Tingkat Keramaian</th>
+				</tr>
+				<tr>
+					<td><span id="pendeteksigerakan"></span> orang</td>
+					<td><span id="mejakosong"></span> meja</td>
+					<td><span id="kebisingan"></span> dB</td>
+					<td><span id="actuator9"></span></td>
+				</tr>
+				<tr>
+					<td colspan="4"><canvas id="actuator9Chart"></canvas></td>
+				</tr>
+			</table>
+		</div>
+	</main>
+	
 </body>
 
 <script>
