@@ -8,11 +8,14 @@
  
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
   
 </head>
 
 <body>
+	
 	<h1>Smart Farm</h1>
 	<table border="1">
 		<th colspan="4">Susu Hewani dan Telur</th>
@@ -28,6 +31,9 @@
 			<td><span id="sensorph"></span> pH</td>
 			<td><span id="actuator1"></span></td>
 		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuatorChart"></canvas></td>
+		</tr>
 
 		<th colspan="4">Daging Merah</th>
 		<tr>
@@ -42,6 +48,9 @@
 			<td><span id="sensorkadarlemak"></span> %</td>
 			<td><span id="actuator2"></span></td>
 		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator2Chart"></canvas></td>
+		</tr>
 		
 		<th colspan="4">Daging Putih</th>
 		<tr>
@@ -55,6 +64,9 @@
 			<td><span id="sensorkadarprotein"></span> %</td>
 			<td><span id="sensorkadargula"></span> %</td>
 			<td><span id="actuator3"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator3Chart"></canvas></td>
 		</tr>
 	</table>
 <!-- ================================================================================================================ -->
@@ -73,6 +85,9 @@
 			<td><span id="suhuudara"></span> &#176;C</td>
 			<td><span id="actuator4"></span></td>
 		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator4Chart"></canvas></td>
+		</tr>
 
 		<th colspan="4">Sayuran</th>
 		<tr>
@@ -87,6 +102,9 @@
 			<td><span id="sensorkadarco2"></span> ppm</td>
 			<td><span id="actuator5"></span></td>
 		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator5Chart"></canvas></td>
+		</tr>
 		
 		<th colspan="4">Buah-buahan</th>
 		<tr>
@@ -100,6 +118,9 @@
 			<td><span id="sensorcurahhujan"></span> mm</td>
 			<td><span id="sensorkualitasair"></span> pH</td>
 			<td><span id="actuator6"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator6Chart"></canvas></td>
 		</tr>
 	</table>
 <!-- ================================================================================================================ -->
@@ -118,6 +139,9 @@
 			<td><span id="radiasisurya"></span>W/m^2</td>
 			<td><span id="actuator7"></span></td>
 		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator7Chart"></canvas></td>
+		</tr>
 
 		<th colspan="4">Deteksi Hasil Penjualan Berfluktuasi</th>
 		<tr>
@@ -128,9 +152,12 @@
 		</tr>
 		<tr>
 			<td><span id="cancelorder"></span> order</td>
-			<td><span id="penilaian"></span> ⭐</td>
+			<td><span id="penilaian"></span>⭐</td>
 			<td><span id="jumlahpesanan"></span> menu</td>
 			<td><span id="actuator8"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator8Chart"></canvas></td>
 		</tr>
 		
 		<th colspan="4">Deteksi Jumlah Pengunjung Restoran</th>
@@ -145,6 +172,9 @@
 			<td><span id="mejakosong"></span> meja</td>
 			<td><span id="kebisingan"></span> dB</td>
 			<td><span id="actuator9"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4"><canvas id="actuator9Chart"></canvas></td>
 		</tr>
 	</table>
 </body>
@@ -178,54 +208,550 @@
     })
   }
 
+//==
+  var actuatorChart = new Chart(document.getElementById("actuatorChart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuatorChart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuatorChart.data.labels.push(new Date().toLocaleTimeString());
+      actuatorChart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuatorChart.data.labels.length > 7) {
+        actuatorChart.data.labels.shift();
+        actuatorChart.data.datasets[0].data.shift();
+      }
+      
+      actuatorChart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+  
+  var actuator2Chart = new Chart(document.getElementById("actuator2Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator2Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator2Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator2Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator2Chart.data.labels.length > 7) {
+        actuator2Chart.data.labels.shift();
+        actuator2Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator2Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
+  var actuator3Chart = new Chart(document.getElementById("actuator3Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator3Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator3Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator3Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator3Chart.data.labels.length > 7) {
+        actuator3Chart.data.labels.shift();
+        actuator3Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator3Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
+  var actuator4Chart = new Chart(document.getElementById("actuator4Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator4Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator4Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator4Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator4Chart.data.labels.length > 7) {
+        actuator4Chart.data.labels.shift();
+        actuator4Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator4Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
+  var actuator5Chart = new Chart(document.getElementById("actuator5Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator5Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator5Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator5Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator5Chart.data.labels.length > 7) {
+        actuator5Chart.data.labels.shift();
+        actuator5Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator5Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
+  var actuator6Chart = new Chart(document.getElementById("actuator6Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator6Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator6Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator6Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator6Chart.data.labels.length > 7) {
+        actuator6Chart.data.labels.shift();
+        actuator6Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator6Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
+  var actuator7Chart = new Chart(document.getElementById("actuator7Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator7Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator7Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator7Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator7Chart.data.labels.length > 7) {
+        actuator7Chart.data.labels.shift();
+        actuator7Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator7Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
+  var actuator8Chart = new Chart(document.getElementById("actuator8Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator8Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator8Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator8Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator8Chart.data.labels.length > 7) {
+        actuator8Chart.data.labels.shift();
+        actuator8Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator8Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
+  var actuator9Chart = new Chart(document.getElementById("actuator9Chart"), {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+		label: "Actuator State",
+		data: [],
+		borderColor: "#3e95cd",
+		fill: false
+		}]
+	},
+	options: {
+		responsive: true,
+		title: {
+		display: true,
+		text: 'Actuator State'
+		},
+		scales: {
+		xAxes: [{
+			display: true
+		}],
+		yAxes: [{
+			display: true,
+			ticks: {
+			suggestedMin: 0,
+			suggestedMax: 100
+			}
+		}]
+		}
+	}
+  });
+
+  function updateActuator9Chart(endpoint) {
+  	$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+	  actuator9Chart.data.labels.push(new Date().toLocaleTimeString());
+      actuator9Chart.data.datasets[0].data.push(data.state);
+      
+      // hapus data lama jika data sudah mencapai 7
+      if (actuator9Chart.data.labels.length > 7) {
+        actuator9Chart.data.labels.shift();
+        actuator9Chart.data.datasets[0].data.shift();
+      }
+      
+      actuator9Chart.update();
+    },
+    error: function(error_data) {
+      console.log(error_data);
+    }
+    })
+  }
+
   setInterval(function(){
 // Smart Farm
     updateSensorValue('/susuhewanidantelur/sensorsuhu', 'sensorsuhu');
     updateSensorValue('/susuhewanidantelur/sensorkelembapan', 'sensorkelembapan');
     updateSensorValue('/susuhewanidantelur/sensorph', 'sensorph');
     updateActuatorState('/actuator/actuator1', 'actuator1');
+	updateActuatorChart('/actuator/actuator1');
 
     updateSensorValue('/dagingmerah/sensoroksigen', 'sensoroksigen');
     updateSensorValue('/dagingmerah/sensorkadrgaram', 'sensorkadrgaram');
     updateSensorValue('/dagingmerah/sensorkadarlemak', 'sensorkadarlemak');
     updateActuatorState('/actuator/actuator2', 'actuator2');
+	updateActuator2Chart('/actuator/actuator2');
 
     updateSensorValue('/dagingputih/sensorkadarsodium', 'sensorkadarsodium');
     updateSensorValue('/dagingputih/sensorkadarprotein', 'sensorkadarprotein');
     updateSensorValue('/dagingputih/sensorkadargula', 'sensorkadargula');
     updateActuatorState('/actuator/actuator3', 'actuator3');
+	updateActuator3Chart('/actuator/actuator3');
 
 // Smart Plantation
 	updateSensorValue('/sensorkarbohidrat/kelembapantanah', 'kelembapantanah');
     updateSensorValue('/sensorkarbohidrat/intensicahaya', 'intensicahaya');
     updateSensorValue('/sensorkarbohidrat/suhuudara', 'suhuudara');
     updateActuatorState('/actuator/actuator4', 'actuator4');
+	updateActuator4Chart('/actuator/actuator4');
 
     updateSensorValue('/sayuran/suhutanah', 'suhutanah');
     updateSensorValue('/sayuran/sensorkelembapanudara', 'sensorkelembapanudara');
     updateSensorValue('/sayuran/sensorkadarco2', 'sensorkadarco2');
     updateActuatorState('/actuator/actuator5', 'actuator5');
+	updateActuator5Chart('/actuator/actuator5');
 
     updateSensorValue('/buah/sensorkecepatanangin', 'sensorkecepatanangin');
     updateSensorValue('/buah/sensorcurahhujan', 'sensorcurahhujan');
     updateSensorValue('/buah/sensorkualitasair', 'sensorkualitasair');
     updateActuatorState('/actuator/actuator6', 'actuator6');
+	updateActuator6Chart('/actuator/actuator6');
 
 // Smart Restaurant
 	updateSensorValue('/musim/barometer', 'barometer');
     updateSensorValue('/musim/ketebalanawan', 'ketebalanawan');
     updateSensorValue('/musim/radiasisurya', 'radiasisurya');
     updateActuatorState('/actuator/actuator7', 'actuator7');
+	updateActuator7Chart('/actuator/actuator7');
 
     updateSensorValue('/hasilpenjualanberfluktuasi/cancelorder', 'cancelorder');
     updateSensorValue('/hasilpenjualanberfluktuasi/penilaian', 'penilaian');
     updateSensorValue('/hasilpenjualanberfluktuasi/jumlahpesanan', 'jumlahpesanan');
     updateActuatorState('/actuator/actuator8', 'actuator8');
+	updateActuator8Chart('/actuator/actuator8');
 
     updateSensorValue('/jumlahpengunjungrestoran/pendeteksigerakan', 'pendeteksigerakan');
     updateSensorValue('/jumlahpengunjungrestoran/mejakosong', 'mejakosong');
     updateSensorValue('/jumlahpengunjungrestoran/kebisingan', 'kebisingan');
     updateActuatorState('/actuator/actuator9', 'actuator9');
-  }, 2000);
+	updateActuator9Chart('/actuator/actuator9');
+  }, 10000);
 
 </script>
